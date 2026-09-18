@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Comparatist — Summer 2026</title>
+<style>
+:root{
+  --paper:#ffffff;
+  --ink:#000000;
+  --red:#d6201a;
+  --grey:#8c8c88;
+  --grey-pale:#e6e5e1;
+  --measure:42rem;
+}
+
+*{box-sizing:border-box;}
+
+html{-webkit-text-size-adjust:100%;}
+
+/* ---------- page-wide backdrop ---------- */
+
+.backdrop{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(to right,rgba(140,140,136,.11) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(140,140,136,.11) 1px,transparent 1px);
+  background-size:5.5rem 5.5rem;
+}
+.backdrop svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+body > *:not(.backdrop){position:relative;z-index:1;}
+
+/* squares set loose down the page */
+
+.issue::before,
+.issue::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+}
+.issue::before{
+  top:34%;
+  left:-5.5rem;
+  width:9rem;
+  height:9rem;
+  border:1px solid rgba(140,140,136,.5);
+  transform:rotate(14deg);
+}
+.issue::after{
+  top:68%;
+  right:-6rem;
+  width:12rem;
+  height:12rem;
+  border:1px solid rgba(140,140,136,.4);
+}
+
+section::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  border:1px solid rgba(140,140,136,.45);
+}
+section:nth-of-type(odd)::after{
+  width:4.5rem;height:4.5rem;
+  right:-2rem;top:3rem;
+  transform:rotate(-9deg);
+}
+section:nth-of-type(even)::after{
+  width:7rem;height:7rem;
+  left:-3.5rem;bottom:2.5rem;
+}
+section:nth-of-type(3n)::after{
+  background:rgba(214,32,26,.07);
+  border-color:transparent;
+}
+.memoriam::after{display:none;}
+
+@media (max-width:70rem){
+  .issue::before,.issue::after,section::after{display:none;}
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:20px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- geometric field ---------- */
+
+.field{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:0;
+  pointer-events:none;
+}
+.field svg{display:block;width:100%;height:100%;}
+
+.sheet{position:relative;z-index:1;}
+
+/* ---------- masthead ---------- */
+
+.masthead{
+  position:relative;
+  padding:clamp(2rem,6vw,5rem) clamp(1.25rem,5vw,4rem) clamp(3rem,8vw,6rem);
+  border-bottom:3px solid var(--ink);
+  overflow:hidden;
+}
+
+.masthead-grid{
+  position:relative;
+  z-index:1;
+  max-width:72rem;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,15rem);
+  gap:clamp(1.5rem,4vw,3rem);
+  align-items:end;
+}
+
+.wordmark{
+  margin:0;
+  font-size:clamp(2.75rem,10vw,6.5rem);
+  line-height:.86;
+  letter-spacing:-.04em;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.wordmark .the{
+  display:block;
+  font-size:.24em;
+  letter-spacing:.34em;
+  font-weight:600;
+  margin-bottom:.9em;
+  color:var(--red);
+}
+
+.issue-line{
+  margin:0;
+  font-size:.82rem;
+  line-height:1.5;
+  letter-spacing:.02em;
+  color:var(--grey);
+  border-top:1px solid var(--ink);
+  padding-top:.7rem;
+}
+.issue-line b{display:block;color:var(--ink);font-weight:700;}
+
+/* the two squares */
+
+.squares{
+  position:absolute;
+  top:clamp(1rem,4vw,3rem);
+  right:clamp(1rem,5vw,5rem);
+  width:clamp(7rem,18vw,13rem);
+  height:clamp(7rem,18vw,13rem);
+  z-index:0;
+}
+.sq{position:absolute;}
+.sq-black{
+  width:62%;height:62%;
+  left:0;top:0;
+  background:var(--ink);
+  transform:rotate(-12deg);
+}
+.sq-red{
+  width:52%;height:52%;
+  right:4%;bottom:6%;
+  background:var(--red);
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .sq-black{animation:land-black .9s cubic-bezier(.16,.84,.34,1) both;}
+  .sq-red{animation:land-red 1.05s cubic-bezier(.16,.84,.34,1) .12s both;}
+  @keyframes land-black{
+    from{transform:translate(-40vw,-30vh) rotate(-60deg);opacity:0;}
+    to{transform:rotate(-12deg);opacity:1;}
+  }
+  @keyframes land-red{
+    from{transform:translate(45vw,35vh) rotate(38deg);opacity:0;}
+    to{transform:none;opacity:1;}
+  }
+}
+
+/* ---------- page frame ---------- */
+
+.issue{
+  position:relative;
+  max-width:72rem;
+  margin:0 auto;
+  padding:0 clamp(1.25rem,5vw,4rem) 5rem;
+}
+
+section{
+  position:relative;
+  padding:clamp(3rem,7vw,5.5rem) clamp(1rem,3vw,2.25rem);
+  margin-bottom:clamp(2rem,4vw,3rem);
+  border-bottom:6px solid var(--ink);
+}
+section:last-of-type{border-bottom:6px solid var(--ink);}
+
+section::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  inset:0 -1.5rem;
+  background:rgba(250,249,245,.88);
+  pointer-events:none;
+}
+.memoriam::before{display:none;}
+
+@media (max-width:70rem){
+  section::before{inset:0 -1rem;}
+}
+
+h2{
+  margin:0 0 1.6rem;
+  font-size:clamp(1.35rem,3.6vw,2rem);
+  line-height:1.05;
+  letter-spacing:-.02em;
+  font-weight:800;
+  max-width:24ch;
+}
+h2::before{
+  content:"";
+  display:block;
+  width:2.4rem;
+  height:.7rem;
+  background:var(--red);
+  margin-bottom:1rem;
+}
+
+h3{
+  margin:0 0 .3rem;
+  font-size:1.18rem;
+  line-height:1.2;
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+
+p{max-width:var(--measure);margin:0 0 1.1rem;}
+
+a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em;}
+a:hover{color:var(--red);}
+a:focus-visible{outline:3px solid var(--red);outline-offset:3px;}
+
+/* ---------- opening note ---------- */
+
+.opening{
+  border-left:.9rem solid var(--ink);
+  border-bottom:3px solid var(--ink);
+  padding-left:clamp(1.25rem,4vw,2.5rem);
+}
+.opening p{
+  font-size:clamp(1.05rem,2.4vw,1.28rem);
+  line-height:1.45;
+  max-width:36rem;
+}
+.opening p:last-child{
+  font-weight:700;
+  border-top:1px solid var(--grey-pale);
+  padding-top:1.1rem;
+}
+
+/* ---------- memoriam ---------- */
+
+.memoriam{background:var(--ink);color:var(--paper);padding-left:clamp(1rem,4vw,2.5rem);padding-right:clamp(1rem,4vw,2.5rem);margin-top:0;}
+.memoriam h2{color:var(--paper);}
+.memoriam h2::before{background:var(--red);}
+.memoriam a{color:var(--paper);}
+.memoriam a:hover{color:var(--red);}
+.memoriam .byline{color:var(--grey);}
+.memoriam .further{
+  border-top:1px solid #333;
+  margin-top:2rem;
+  padding-top:1.4rem;
+}
+.memoriam .further p{max-width:38rem;font-size:.95rem;color:#d8d8d4;}
+
+.dates{
+  font-weight:700;
+  font-size:.85rem;
+  letter-spacing:.14em;
+  color:var(--red);
+  margin-bottom:.5rem;
+}
+
+/* ---------- dispatches ---------- */
+
+.dispatch{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:.8rem;
+  padding:2.2rem 0;
+  border-top:1px solid var(--grey-pale);
+}
+.dispatch:first-of-type{border-top:none;}
+.dispatch h3{
+  font-size:clamp(1.35rem,2.8vw,1.75rem);
+  line-height:1.15;
+  margin-bottom:.25rem;
+}
+.dispatch .byline{
+  font-size:1rem;
+  margin:0;
+}
+
+.byline{
+  font-size:.85rem;
+  color:var(--grey);
+  margin:0 0 1.3rem;
+}
+
+figure{
+  margin:0;
+  align-self:start;
+}
+figure img{
+  display:block;
+  width:100%;
+  height:auto;
+  background:var(--grey-pale);
+  border:1px solid var(--grey-pale);
+}
+figcaption{
+  font-size:.8rem;
+  line-height:1.4;
+  color:var(--grey);
+  border-left:3px solid var(--red);
+  padding-left:.7rem;
+  margin-top:.6rem;
+  max-width:28rem;
+}
+
+@media (min-width:56rem){
+  .dispatch{grid-template-columns:minmax(0,1fr) 17rem;gap:2.5rem;}
+  .dispatch figure{grid-column:2;grid-row:1 / span 3;}
+}
+
+/* ---------- readings ---------- */
+
+.reading{
+  display:grid;
+  grid-template-columns:8.5rem minmax(0,1fr);
+  gap:1.5rem;
+  align-items:start;
+  border-left:.55rem solid var(--red);
+  padding:.2rem 0 .2rem 1.1rem;
+  margin-bottom:2.6rem;
+  max-width:46rem;
+}
+.reading:nth-child(even){border-left-color:var(--ink);}
+.reading .cover{margin:0;}
+.reading .cover img{
+  display:block;
+  width:100%;
+  aspect-ratio:1 / 1;
+  object-fit:cover;
+  background:var(--grey-pale);
+  border:1px solid var(--grey-pale);
+}
+.reading .book{font-weight:700;}
+.reading blockquote{
+  margin:.6rem 0 0;
+  font-size:1.05rem;
+  line-height:1.5;
+}
+@media (max-width:40rem){
+  .reading{grid-template-columns:minmax(0,1fr);}
+  .reading .cover{max-width:11rem;}
+}
+
+/* ---------- alumni ---------- */
+
+.alumni blockquote{
+  margin:0 0 1.2rem;
+  padding:1.4rem 1.5rem;
+  background:var(--grey-pale);
+  font-size:1.05rem;
+  line-height:1.5;
+  max-width:40rem;
+}
+
+/* ---------- grants ---------- */
+
+.grant{
+  padding:1.2rem 0;
+  border-top:1px solid var(--grey-pale);
+  max-width:44rem;
+}
+.grant h3{margin-bottom:.45rem;}
+.grant p{margin-bottom:.6rem;}
+.deadline{
+  display:inline-block;
+  background:var(--red);
+  color:var(--paper);
+  font-weight:700;
+  font-size:.8rem;
+  padding:.18rem .5rem;
+}
+
+/* ---------- call-outs ---------- */
+
+.callout{
+  background:var(--ink);
+  color:var(--paper);
+  padding:clamp(1.5rem,4vw,2.5rem);
+  max-width:48rem;
+}
+.callout h2{margin-top:0;color:var(--paper);}
+.callout h2::before{background:var(--red);}
+.callout a{color:var(--paper);}
+.callout a:hover{color:var(--red);}
+
+/* ---------- colophon ---------- */
+
+.colophon{
+  position:relative;
+  border-top:3px solid var(--ink);
+  padding:2rem clamp(1.25rem,5vw,4rem) 3.5rem;
+  max-width:72rem;
+  margin:0 auto;
+  font-size:.85rem;
+  color:var(--grey);
+  background:rgba(250,249,245,.88);
+}
+.colophon p{max-width:44rem;}
+.design-note{
+  color:var(--ink);
+  font-size:.95rem;
+  margin-bottom:1.8rem;
+}
+.design-note .pilcrow{
+  color:var(--red);
+  font-weight:700;
+  margin-right:.35em;
+}
+</style>
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true">
+  <svg viewBox="0 0 1000 1400" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#8c8c88" stroke-opacity=".22" stroke-width="2" fill="none">
+      <line x1="-200" y1="1400" x2="900" y2="-100"/>
+      <line x1="-60" y1="1400" x2="1040" y2="-100"/>
+      <line x1="0" y1="180" x2="1000" y2="900"/>
+      <line x1="120" y1="1400" x2="1000" y2="430"/>
+    </g>
+    <g stroke="#8c8c88" stroke-opacity=".38" stroke-width="2" fill="none">
+      <rect x="690" y="190" width="150" height="150" transform="rotate(-11 765 265)"/>
+      <rect x="86" y="560" width="96" height="96"/>
+      <rect x="600" y="1010" width="230" height="230" transform="rotate(7 715 1125)"/>
+      <rect x="250" y="1180" width="120" height="120" transform="rotate(-18 310 1240)"/>
+      <rect x="430" y="60" width="180" height="180" transform="rotate(21 520 150)"/>
+      <rect x="760" y="580" width="72" height="72" transform="rotate(-6 796 616)"/>
+      <rect x="40" y="300" width="132" height="132" transform="rotate(9 106 366)"/>
+      <rect x="480" y="1260" width="96" height="96" transform="rotate(14 528 1308)"/>
+      <rect x="880" y="1180" width="150" height="150"/>
+    </g>
+    <g stroke="#8c8c88" stroke-opacity=".34" stroke-width="2" fill="none">
+      <circle cx="210" cy="120" r="86"/>
+      <circle cx="905" cy="430" r="132"/>
+      <circle cx="330" cy="700" r="54"/>
+      <circle cx="120" cy="1090" r="108"/>
+      <circle cx="700" cy="1330" r="70"/>
+      <circle cx="520" cy="470" r="26"/>
+    </g>
+    <g fill="#8c8c88" fill-opacity=".1">
+      <rect x="140" y="250" width="70" height="70"/>
+      <rect x="820" y="700" width="110" height="110" transform="rotate(12 875 755)"/>
+      <rect x="400" y="820" width="46" height="46"/>
+    </g>
+    <rect x="60" y="960" width="54" height="54" fill="#d6201a" fill-opacity=".12"/>
+  </svg>
+</div>
+
+<header class="masthead">
+  <div class="field" aria-hidden="true">
+    <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+      <rect x="0" y="0" width="1200" height="420" fill="#ffffff"/>
+      <rect x="60" y="330" width="420" height="10" fill="#e6e5e1"/>
+      <rect x="60" y="356" width="260" height="10" fill="#e6e5e1"/>
+      <circle cx="1010" cy="120" r="150" fill="none" stroke="#e6e5e1" stroke-width="10"/>
+      <line x1="0" y1="420" x2="520" y2="0" stroke="#e6e5e1" stroke-width="8"/>
+    </svg>
+  </div>
+
+  <div class="squares" aria-hidden="true">
+    <div class="sq sq-black"></div>
+    <div class="sq sq-red"></div>
+  </div>
+
+  <div class="masthead-grid">
+    <h1 class="wordmark"><span class="the">News from UCI Comparative Literature</span>The Comparatist</h1>
+    <p class="issue-line"><b>Summer 2026</b>Department of Comparative Literature, University of California, Irvine</p>
+  </div>
+</header>
+
+<main class="issue">
+
+  <section class="opening" aria-label="To open">
+    <div>
+      <p>The summer behind us broke heat records in one region after another, month after month. Drought followed the heat, and catastrophic landslides swept through the Himalayas. Armed conflicts escalated, leaving a trail of death and a rampant militarism across much of the world. Nearer to us, it brought the loss of a colleague, a mentor, and a public intellectual of rare stature.</p>
+      <p>And still we read, we think, we write, we do our work. That is what follows here.</p>
+    </div>
+  </section>
+
+  <section class="memoriam">
+    <h2>In memoriam: Ackbar Abbas</h2>
+    <p class="dates">1942–2026</p>
+    <p>Professor Ackbar Abbas (b. 1942 in Hong Kong) died peacefully in Beijing on July 13, 2026, after a brief period of illness. He is survived by his wife, Sola Liu, his four children and three grandchildren.</p>
+    <p>Ackbar joined the Department of Comparative Literature at UCI in January 2007, after teaching at the University of Hong Kong. His singular and creative work has had a major impact globally, both in the academy and as a public intellectual, and brought new ways of thinking and a new style of writing to UCI. His international recognition is reflected in his invited keynotes and public lectures, including in South Africa (WISER), Taipei, Singapore, Seoul, London, Russia, South Korea, Germany, Canada and Hong Kong. He also served on the editorial boards of major journals in Hong Kong, Turkey, the UK, Australia, and the Netherlands.</p>
+    <p class="byline">Written by Gabriele Schwab, on behalf of the Department of Comparative Literature. <a href="https://www.humanities.uci.edu/news/ackbar-abbas">Read the full statement</a>.</p>
+    <p>A memorial for Professor Ackbar Abbas is being planned in conjunction with the Global Asias conference at UCI in winter quarter. Details will be made available at a later date.</p>
+    <div class="further">
+      <p>A tribute by David Theo Goldberg, UCI School of Humanities, on Ackbar as colleague, interlocutor, and friend. <a href="https://www.humanities.uci.edu/news/ackbar-abbas-0">Read it here</a>.</p>
+      <p>Shiqi Lin, “To Fail, to Struggle, to Live the Impossible: Remembering Ackbar Abbas,” <em>Positions Politics</em>, a former student’s reflection on his thought and its afterlives. <a href="https://positionspolitics.org/shiqi-lin-to-fail-to-struggle-to-live-the-impossible-remembering-ackbar-abbas/">Read it here</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Faculty honors</h2>
+    <p>Congratulations to Jane O. Newman, Professor Emerita of Comparative Literature, on receiving a 2026–2027 UCI Academic Senate Better World Award. The award recognizes faculty whose work extends beyond the campus to serve the wider public — a fitting recognition of Newman’s advocacy for scholars at risk, alongside her continuing scholarship on Erich Auerbach.</p>
+    <p><a href="https://www.humanities.uci.edu/news/uci-comparative-literature-professor-emerita-jane-o-newman-awarded-2026-2027-academic-senate">Read the announcement</a>.</p>
+  </section>
+
+  <section>
+    <h2>Summer research dispatches</h2>
+
+    <article class="dispatch">
+      <div>
+        <h3>The coldest summer I ever spent was a winter in Buenos Aires…</h3>
+        <p class="byline">Margaux Fitoussi, Assistant Professor of Comparative Literature</p>
+      </div>
+      <figure>
+        <img src="../assets/2026-summer/el-gauchito.jpg" width="900" height="600"
+             alt="Grainy black-and-white Super 8 still: a woman in profile, her face lit from below by candle flame, with a bearded man in a cap beside her and a latticed window behind.">
+        <figcaption>Still from <em>El Gauchito</em> (2026), Margaux Fitoussi and Nicolás Viotti.</figcaption>
+      </figure>
+      <div>
+        <p>This July, I gave a talk at the University of San Martín about the history of the moving image in ethnographic fieldwork and my own visual anthropological practice. I stayed for two months, and while there became curious about the popular saint Gauchito Gil, a tragic hero from the northeastern Argentinian province of Corrientes, who is venerated in thousands of blood-red shrines across the country — on the road, in cemeteries, in people’s homes. The Gauchito Gil story is, in part, the late nineteenth-century tale of a military deserter who, moments before his execution, told a policeman that his ill son would be cured if he prayed for him, the man he was about to execute. The policeman prayed for Gauchito Gil, slit his throat and hung him from a tree — then, when his son had healed, built him a shrine. In Mariana Enríquez’s short story “El chico sucio” (The Dirty Kid), she explains: “The gaucho brings luck, heals, helps, and doesn’t ask for much in return, just that these tributes be paid to him and, sometimes, [with] a little bit of alcohol.” (2016, 17, translation mine). I have researched the lived experience of people who pray to local saints before, following Tunisians, both Muslims and Jews, on similar sorts of pilgrimages. From Tunisia to Argentina, people journey to pray for any number of reasons, with requests that speak to injuries of class, faith in the possibility of miracles, and a willingness to ask for spiritual intervention. Now, after leaving Buenos Aires, I am returning to Super 8 footage I shot of an August pilgrimage to a Gauchito Gil shrine on the southern outskirts of Buenos Aires: the offering of alcohol and cigarettes, the lighting of candles, individual prayers made in a crowd. New directions that are in fact old directions in new places.</p>
+      </div>
+    </article>
+
+    <article class="dispatch">
+      <div>
+        <h3>The Two Marianos</h3>
+        <p class="byline">David H. Colmenares, Assistant Professor of Comparative Literature</p>
+      </div>
+      <figure>
+        <img src="../assets/2026-summer/castillo-ledon-cultura.jpg" width="900" height="1300"
+             alt="Worn paper cover printed in dark blue on tan stock, in an Art Deco style drawing on pre-Hispanic ornament: a banner reading ANTIGVA LITERATVRA INDIGENA-MEXICANA above a round vessel holding five stylized flowers, flanked by two columns with stepped lamps, over a panel reading CVLTVRA, TOMO V, NVM. 4.">
+        <figcaption>Luis Castillo Ledón, <em>Antigua literatura indígena mexicana</em>, Cultura V.4 (Mexico City: Editorial Cultura, 1917). Cover by Antonio Torres.</figcaption>
+      </figure>
+      <div>
+        <p>After the World Cup ended, the celebrations over Argentina’s defeat finally abated, and Mexico City downgraded from soccer-crazed to its usual baseline of bustling vitality, it was time to dive into the archives I had come to explore. I had two objectives: to learn as much as possible about the careers of two Nahua intellectuals who lived around the turn of the twentieth century, and to find the manuscripts and typescripts of their unpublished and all but forgotten translations of the Cantares mexicanos, the largest surviving corpus of pre-Hispanic Indigenous song in any language of the Americas. I found what I was looking for, but the best part of the summer was finding what I had not anticipated. Aby Warburg described a common experience of the researcher as the “law of the good neighbor”: one goes looking for a particular book or document, only to find that the unfamiliar volume beside it on the shelf is the one that matters. In my case it was a rich paper trail documenting the everyday working lives of Mariano Jacobo Rojas and Mariano Sánchez Santos, the two Indigenous intellectuals who taught Nahuatl (or Mexicano, as it was then known) at the Museo Nacional well into the twentieth century. The museum’s archives record with glorious bureaucratic detail (the administration required monthly and even weekly reports from everyone from the head archaeologist to the janitors) the two Marianos’ daily labors as teachers, textual scholars, and respected linguistic authorities; their persistence, against all odds, in transcribing and translating difficult sixteenth-century Nahuatl texts; and their efforts to keep the chair of Nahuatl afloat through major political upheavals, including the Mexican Revolution. But the documentation also intimates their personal plights. Some episodes are funny, and a few resonated with my own experience as a teacher: for several weeks in March of 1907, none of Sánchez Santos’s students showed up to class. Others are intriguing, like the pricey scholarly editions that disappeared at one point from Jacobo Rojas’s office. (I’m happy to report that the books were later found, as I learned from the report of a museum janitor with a flair for sleuthing.) Others are simply sad, like the record of the last months of Sánchez Santos’s life. The documents also let me reconstruct the changing institutional framework of the museum, founded in 1825, and the social constellation of individuals and disciplines that formed the conditions for the study of pre-Hispanic Mexico in the early twentieth century.</p>
+      </div>
+    </article>
+
+    <article class="dispatch">
+      <div>
+        <h3>Yiddish in the new old country</h3>
+        <p class="byline">Iris Malke Morrell, PhD Student in Comparative Literature</p>
+      </div>
+      <figure>
+        <img src="../assets/2026-summer/morrell-letterpress.jpg" width="900" height="1200"
+             alt="[alt text to be written]">
+        <figcaption>[Photo credit to be confirmed with Iris Morrell.]</figcaption>
+      </figure>
+      <div>
+        <p>I began June with a week in Princeton to kick off a translation fellowship, and spent the rest of the summer co-translating a Hasidic oration about kabbalistic metaphysics with a delightful cohort. Simultaneous to translating, I studied Yiddish intensively at the YIVO Institute in New York City. Upstairs in the same building as the intensive I visited a book arts collective, founded by new friends of mine, that is purchasing and maintaining old Yiddish letterpress. Finally, I spent the first weeks of September conducting an archival encounter in Berkeley discovering the world of Tree, a journal of kabbalistic poetry run by beatnik poets who published some of the first English translations (often highly erroneous ones) of ancient Jewish mystical texts alongside antiwar discourse and contemporary mystical and erotic poetry. See the picture below for what I made myself on the letterpress — what you can’t see is the windows overlooking lower Manhattan where Yiddish-speaking factory workers used the same machines a century ago.</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <h2>Summer readings</h2>
+
+    <div class="reading">
+      <figure class="cover">
+        <img src="../assets/2026-summer/marlatt-liquidities.jpg" alt="Cover of Daphne Marlatt’s Liquidities.">
+      </figure>
+      <div>
+        <p class="book">Daphne Marlatt, <em>Liquidities: Vancouver Poems Then and Now</em> (Vancouver: Talonbooks, 2013)<br>
+        <span class="byline">Recommended by Dylan Taylor, PhD candidate</span></p>
+        <blockquote>Chilly, hallucinatory poems or rather “liquid assets”; view-fractures of livestream city-phenomenology, or that is, the “inchoate dark on the blank side of the news” as brittle and opaline as any lichen subsisting in the Pacific Northwest; or that is, its “permeable spasm in continuity,” or that is, “whose?”; or, that is, not exactly “summer” reading.</blockquote>
+      </div>
+    </div>
+
+    <div class="reading">
+      <figure class="cover">
+        <img src="../assets/2026-summer/akbar-martyr.jpg" alt="Cover of Kaveh Akbar’s Martyr!">
+      </figure>
+      <div>
+        <p class="book">Kaveh Akbar, <em>Martyr!</em> (New York: Alfred A. Knopf, 2024)<br>
+        <span class="byline">Recommended by Sabella Habtemariam</span></p>
+        <blockquote>A strenuously sober poet sets out to make an anthology of martyrs: Joan of Arc, Bobby Sands, his parents, and soon himself. Follow Cyrus try to find meaning in death — and the moments before it — as he follows his roots back to the Iran that left his family behind.</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="alumni">
+    <h2>Alumni news</h2>
+    <p>Nathaniel Adan Gonzalez has begun the English M.A. program at Cal State Fullerton.</p>
+    <blockquote>“In my time at UCI, I had the privilege of meeting some very genuine and passionate people, learned to appreciate great literature through both a historical and political lens, and through theory, practiced a more abstract and critical way of thinking about the world. Having been accepted into CSUF’s English MA program, I am excited to continue my studies with an interest in literature borne out of and enriched by my experience in UCI’s Comp Lit program.”</blockquote>
+    <p>If you are a Comp Lit alum with news to share, write to the Undergraduate Director at <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p>
+  </section>
+
+  <section>
+    <h2>Fall grants and scholarships</h2>
+    <p>The national scholarship cycles are open now, and several deadlines fall this quarter. If you have been meaning to look into these, this is the moment.</p>
+
+    <div class="grant">
+      <h3>Critical Language Scholarship</h3>
+      <p>A fully funded 8–10 week overseas language and cultural immersion program, open to undergraduates at every level of language learning. Students from all disciplines are encouraged to apply, and recent languages have included Arabic, Chinese, Hindi, Japanese, Korean, Persian, Portuguese, Russian, and Swahili. This one is unusually approachable: no campus endorsement is required, and no letters of recommendation. One rule worth knowing before you start: you may apply for one language only, and submitting more than one application disqualifies you from all of them.</p>
+      <p><span class="deadline">Mid-November, for summer 2027</span></p>
+    </div>
+
+    <div class="grant">
+      <h3>Fulbright U.S. Student Program</h3>
+      <p>If you are a senior applying through UCI’s endorsement process, the campus deadline has already passed. If you are a junior, this is the year to begin: strong applications take months to develop, and the campus deadline runs well ahead of the national one.</p>
+      <p><span class="deadline">National deadline: October 6, 2026</span></p>
+    </div>
+
+    <div class="grant">
+      <h3>UROP</h3>
+      <p>For UCI-internal funding, the department is glad to support students applying for Undergraduate Research Opportunities Program grants. Deadlines fall later in the year, but students typically develop a project with a faculty mentor over the preceding quarter. See <a href="https://urop.uci.edu">urop.uci.edu</a>.</p>
+    </div>
+
+    <div class="grant">
+      <h3>Where to get help</h3>
+      <p>If you are considering applying to any of these, you are warmly encouraged to reach out to me (<a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>) or to any of your Comparative Literature professors. We are glad to help you think through projects, programs, and fit.</p>
+      <p>The essential campus resource is the UCI Scholarship Opportunities Program, in 193 Science Library, which handles endorsements and application preparation for undergraduates and recent graduates. Reach them at <a href="mailto:sklrship@uci.edu">sklrship@uci.edu</a> or visit <a href="https://scholars.uci.edu">scholars.uci.edu</a>. If you are thinking about Boren, Gilman, Beinecke, Truman, Rhodes, Marshall, or Mitchell, book an advising appointment now — those campus deadlines arrive months before the national ones, and that gap is where most applications are lost.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="callout">
+      <h2>Coffee hour</h2>
+      <p>Comparative Literature and English &amp; Comparative Literary Studies are holding a joint coffee hour on Wednesday, September 30, from [time], in the Comparative Literature lobby. Faculty, graduate students, lecturers, and undergraduates are all welcome.</p>
+      <p>Coffee and something to eat will be out through the end of the day, so come by after class if the hour itself doesn’t work.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>A mini free library in the lobby</h2>
+    <p>There is now a mini free library in the Comparative Literature lobby. The books are free, and they are there to be taken — undergraduates and graduate students alike, help yourselves, no sign-out and no return date.</p>
+    <p>[If you have books you no longer need, leave them on the shelf for someone else.]</p>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <p class="design-note"><span class="pilcrow">¶</span>The design of this issue is inspired by El Lissitzky’s <em>Of Two Squares: A Suprematist Tale in Six Constructions</em> (Berlin, 1922). In it a red square and a black square travel through space to a world of dark disorder, clash, and leave behind a new construction assembled from the wreckage. The story is narrated almost exclusively through geometry. Lissitzky’s book is on the syllabus of <strong>Philosophical Fictions</strong>, the new Comp Lit 60A, offered for the first time in Spring 2027.</p>
+  <p><em>The Comparatist</em> is published quarterly by the Department of Comparative Literature at the University of California, Irvine. Edited by David H. Colmenares, Director of Undergraduate Studies. News and contributions are welcome at <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>. <a href="../">All issues</a>.</p>
+</footer>
+
+</body>
+</html>
