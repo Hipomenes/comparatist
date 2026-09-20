@@ -61,7 +61,7 @@ section{position:relative}
 .abbas-quote{margin-top:0}
 .memorial-box{background:#111;color:#fff;padding:1.25rem 1.4rem;max-width:42rem}
 /* Major-news feature: solid red field, intentionally distinct from ordinary sections. */
-.news-feature{background:var(--red);color:#fff;padding:clamp(2rem,5vw,4rem);margin:1rem 0 3rem}.news-feature .kicker{color:#fff}.news-feature .h2{color:#fff}.news-feature p{max-width:58rem}.news-feature a{color:#fff}
+.news-feature{background:var(--red);color:#fff;padding:clamp(2rem,5vw,4rem);margin:1rem 0 3rem}.news-feature .kicker{color:#fff}.news-feature h2{color:#fff;overflow-wrap:normal;word-break:normal}.news-feature p{max-width:58rem}.news-feature a{color:#fff}
 
 /* Sequential dispatches with 2/3 text + 1/3 image. */
 .sequence>article{max-width:none}
@@ -71,6 +71,12 @@ section{position:relative}
 
 /* TYPOGRAPHY: Athelas is the primary serif for prose; Georgia/Times are fallbacks if Athelas is unavailable.
    Both .body and .lead intentionally use the same generous prose size. */
+
+/* PROSE FONT — Athelas.
+   Applied explicitly to all long-form prose so utility classes cannot accidentally switch it to sans-serif.
+   Note: Athelas must be installed/served on the viewing device; CSS cannot bundle the font by itself. */
+.body,.lead,blockquote,.serif,.memorial-box,.news-feature .feature-copy{font-family:Athelas,serif !important;}
+
 /* Readings: text first, cover on the right. */
 .reading-item{max-width:none}
 .cover{width:100%;max-width:13rem;height:auto;aspect-ratio:auto;object-fit:contain}
@@ -173,8 +179,8 @@ section{position:relative}
 <section aria-labelledby="conference-2027" class="pv4 pv5-l">
   <div class="news-feature">
     <p class="kicker">Conference announcement</p>
-    <h2 class="h2 mt3" id="conference-2027">Big News for the 2027 Undergraduate Conference</h2>
-    <div class="body mt4">
+    <h2 class="sans fw8 f2 f1-l lh-title mt3 mb4 measure" id="conference-2027">Big News for the 2027 Undergraduate Conference</h2>
+    <div class="body feature-copy mt4">
       <p>The UCI Comparative Literature Undergraduate Conference in Critical Theory returns in Spring 2027 for its third year, and this time we are not doing it alone. We are delighted to announce that the 2027 conference will be co-organized with the Critical Theory &amp; Social Justice program at Occidental College. And there is more: the plan is for selected papers to appear in a special issue of the CTSJ Journal of Undergraduate Research, edited out of the conference, so your work could end up in print. Our thanks go to Professor Malek Moazzam-Doulat of Occidental College, whose enthusiasm for the collaboration made this partnership possible. Full details, dates, and the call for papers will be announced in the coming months.</p>
       <p><strong>It is not too early to start thinking about what you want to propose.</strong></p>
     </div>
