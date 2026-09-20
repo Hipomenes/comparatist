@@ -7,19 +7,395 @@
 <title>The Comparatist — Summer 2026</title>
 <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css">
 <style>
-:root{--paper:#f5f1e8;--ink:#111;--red:#d71920;--rule:#555}
-html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.62}
-a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.16em}a:hover{color:var(--red)}a:focus-visible{outline:3px solid var(--red);outline-offset:4px;background:#fff}
-.sans{font-family:Arial,Helvetica,sans-serif}.measure-wide{max-width:82rem}.mast{font-family:Arial,Helvetica,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.065em;line-height:.82}.sans-title{font-family:Arial,Helvetica,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.95}.kicker{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);line-height:1.2}.issue{font-family:Arial,Helvetica,sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.serif{font-family:Georgia,"Times New Roman",serif}.body{font-size:1.04rem;line-height:1.7}.lead{font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.43}.display{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:clamp(2.6rem,6vw,6.5rem);line-height:.9;letter-spacing:-.055em;text-transform:uppercase}.h2{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:clamp(2.2rem,4.4vw,4.8rem);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}.h3{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:clamp(1.55rem,2.4vw,2.5rem);line-height:.98;letter-spacing:-.03em}.byline{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.35}.rule{border-color:#222}.soft{border-color:#888}.red{color:var(--red)}section h2,section h3,section .kicker{position:relative;z-index:2}
-.geom{position:relative;min-height:15rem;pointer-events:none;z-index:0}.geom .r1{position:absolute;width:8rem;height:8rem;background:var(--red);left:5%;top:2%;transform:rotate(13deg)}.geom .b1{position:absolute;width:5.5rem;height:5.5rem;background:#111;right:12%;bottom:8%}.geom .c1{position:absolute;width:4.3rem;height:4.3rem;border-radius:50%;background:#111;right:1%;top:0}.geom .diag{position:absolute;width:10rem;height:1rem;background:#111;right:0;top:43%;transform:rotate(47deg)}.geom .c2{position:absolute;width:6.4rem;height:6.4rem;border-radius:50%;background:var(--red);right:8%;bottom:0}.geom-small{position:relative;min-height:8rem;pointer-events:none;z-index:0}.geom-small .sq{position:absolute;width:5.2rem;height:5.2rem;background:var(--red);left:1rem;top:1rem}.geom-small .bar{position:absolute;width:7rem;height:.75rem;background:#111;left:.3rem;top:4.4rem;transform:rotate(-48deg)}
-.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4rem}.sequence>article{max-width:64rem;padding:0 0 4.5rem;margin:0 0 4.5rem;border-bottom:1px solid #888}.sequence>article:last-child{border-bottom:0;margin-bottom:0}.sequence figure{max-width:52rem}.sequence .body{max-width:52rem}.reading-item{max-width:58rem;padding:0 0 4rem;margin:0 0 4rem;border-bottom:1px solid #888}.reading-item:last-child{border-bottom:0;margin-bottom:0}.scholarship{max-width:52rem;padding:0 0 3.5rem;margin:0 0 3.5rem;border-bottom:1px solid #888}.scholarship:last-of-type{border-bottom:0}.substance{max-width:58rem}.dispatch-img,.cover{width:100%;display:block}.cover{max-width:15rem;aspect-ratio:2/3;object-fit:cover}.callout{border-left:.35rem solid var(--red);padding-left:1.25rem}blockquote{position:relative;margin:2rem 0;padding:1rem 0 1rem 4.5rem;border-left:0;font-style:italic}blockquote:before{content:"\201C";position:absolute;left:0;top:-.55rem;color:var(--red);font-family:Georgia,"Times New Roman",serif;font-size:7rem;font-weight:700;font-style:normal;line-height:1}.coffee-box{position:relative;border:2px solid var(--red);padding:2.5rem 2.5rem 2.2rem;background:rgba(255,255,255,.16);max-width:58rem}.coffee-box:before{content:"COFFEE HOUR";position:absolute;top:-.78rem;left:1.4rem;background:var(--red);color:white;padding:.3rem .75rem;font-family:Arial,Helvetica,sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.16em}.pilcrow{display:block;color:var(--red);font-family:Arial,Helvetica,sans-serif;font-size:5.5rem;font-weight:900;line-height:.75;margin-bottom:1.2rem}.footer-mark{font-family:Arial,Helvetica,sans-serif;font-size:2rem;font-weight:900;letter-spacing:-.06em}
-@media(max-width:58rem){.grid2{grid-template-columns:1fr;gap:2.5rem}.mast{font-size:clamp(4rem,16vw,8rem)}.geom{min-height:10rem}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* =========================================================
+   THE COMPARATIST — SUMMER 2026
+   Issue palette + typography
+   Tachyons handles most spacing/layout utilities; these rules
+   provide the issue-specific Lissitzky-inspired visual system.
+   ========================================================= */
+:root {
+  --paper: #f5f1e8;
+  --ink: #111111;
+  --red: #d71920;
+  --rule: #555555;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12pt;              /* requested base reading size */
+  line-height: 1.55;
+}
+
+/* Accessibility */
+.clip{position:absolute!important;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;width:1px;overflow:hidden;white-space:nowrap}
+a {
+  color: inherit;
+  text-decoration-thickness: .08em;
+  text-underline-offset: .16em;
+}
+a:hover { color: var(--red); }
+a:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 4px;
+  background: #fff;
+}
+.skip-link {
+  transform: translateY(-140%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   TYPE
+   Display/structural type = sans serif
+   Reading text = serif
+   ========================================================= */
+.sans,
+.mast,
+.issue,
+.kicker,
+.byline,
+.section-title {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.measure-wide { max-width: 76rem; }
+.substance { max-width: 46rem; }
+
+.mast {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -.065em;
+  line-height: .82;
+}
+
+.issue {
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.kicker {
+  color: var(--red);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: clamp(2rem, 3.8vw, 3.65rem);
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.display {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: clamp(2.7rem, 5vw, 5.2rem);
+  line-height: .96;
+  letter-spacing: -.045em;
+}
+
+.h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 3.5vw, 3.65rem);
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+.h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: clamp(1.55rem, 2.25vw, 2.25rem);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+}
+
+.body {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.lead {
+  font-size: 1.14rem;
+  line-height: 1.48;
+}
+
+.byline {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   VERTICAL RHYTHM
+   Less padding than the previous version.
+   ========================================================= */
+.issue-section {
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+}
+.compact-section {
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
+}
+.rule { border-color: #222; }
+.soft { border-color: #888; }
+
+/* =========================================================
+   LISSITZKY GEOMETRY
+   All shapes live in dedicated shape areas or page margins.
+   They never sit over headings/text.
+   ========================================================= */
+.geom {
+  position: relative;
+  min-height: 13rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+.geom .r1 {
+  position: absolute;
+  width: 7.4rem;
+  height: 7.4rem;
+  background: var(--red);
+  left: 7%;
+  top: 7%;
+  transform: rotate(13deg);
+}
+.geom .b1 {
+  position: absolute;
+  width: 5.1rem;
+  height: 5.1rem;
+  background: var(--ink);
+  right: 13%;
+  bottom: 9%;
+}
+.geom .c1 {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--ink);
+  right: 2%;
+  top: 5%;
+}
+.geom .diag {
+  position: absolute;
+  width: 9rem;
+  height: .9rem;
+  background: var(--ink);
+  right: 1%;
+  top: 43%;
+  transform: rotate(47deg);
+}
+
+.shape-band {
+  position: relative;
+  height: 4.5rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+.shape-band .red-square {
+  position: absolute;
+  width: 4.5rem;
+  height: 4.5rem;
+  left: 0;
+  top: 0;
+  background: var(--red);
+  transform: rotate(-8deg);
+}
+.shape-band .black-bar {
+  position: absolute;
+  width: 7rem;
+  height: .65rem;
+  left: 2.5rem;
+  top: 2rem;
+  background: var(--ink);
+  transform: rotate(-38deg);
+}
+.shape-band .black-dot {
+  position: absolute;
+  width: 3.8rem;
+  height: 3.8rem;
+  right: 0;
+  top: .3rem;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+/* =========================================================
+   LONG-FORM SEQUENCES
+   Substantive pieces run one after another, never as cards.
+   ========================================================= */
+.sequence > article,
+.reading-item,
+.scholarship {
+  max-width: 50rem;
+  padding-bottom: 2.75rem;
+  margin-bottom: 2.75rem;
+  border-bottom: 1px solid #888;
+}
+.sequence > article:last-child,
+.reading-item:last-child,
+.scholarship:last-of-type {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+.sequence figure { max-width: 44rem; }
+.sequence .body { max-width: 46rem; }
+
+.dispatch-img {
+  width: 100%;
+  max-height: 34rem;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+.cover {
+  width: 100%;
+  max-width: 13rem;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* =========================================================
+   SQUARE IMAGE + TEXT
+   Drop future images into /assets and update each src below.
+   On desktop the square sits beside the text; on narrow screens
+   it stacks above the text.
+   ========================================================= */
+.media-row {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  gap: 1.6rem;
+  align-items: start;
+}
+.square-image {
+  width: 14rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.media-copy { min-width: 0; }
+
+/* Big red quotation mark, without boxing the quotation */
+.memorial-quote::before {
+  font-size: 7.2rem;
+  top: -.75rem;
+}
+blockquote {
+  position: relative;
+  max-width: 42rem;
+  margin: 1.6rem 0;
+  padding: .8rem 0 .8rem 3.9rem;
+  border: 0;
+  font-style: italic;
+}
+blockquote::before {
+  content: "“";
+  position: absolute;
+  left: 0;
+  top: -.55rem;
+  color: var(--red);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 6.2rem;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1;
+}
+
+/* Scholarship/advising note */
+.callout {
+  border-left: .35rem solid var(--red);
+  padding-left: 1.25rem;
+}
+
+/* Coffee Hour: deliberately exceptional */
+.coffee-box {
+  position: relative;
+  max-width: 48rem;
+  border: 2px solid var(--red);
+  padding: 2rem 2.2rem 1.8rem;
+  background: rgba(215,25,32,.035);
+}
+.coffee-box::before {
+  content: "COFFEE HOUR";
+  position: absolute;
+  top: -.75rem;
+  left: 1.35rem;
+  padding: .28rem .7rem;
+  background: var(--red);
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+/* Colophon */
+.colophon-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+}
+.pilcrow {
+  display: inline-block;
+  flex: 0 0 auto;
+  color: var(--red);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 5.6rem;
+  font-weight: 900;
+  line-height: .65;
+  margin-bottom: 0;
+}
+.footer-mark {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -.06em;
+}
+
+/* Responsive */
+@media (max-width: 58rem) {
+  .media-row { grid-template-columns: 1fr; gap: 1rem; }
+  .square-image { width: min(100%, 18rem); }
+  .mast { font-size: clamp(4rem, 16vw, 8rem); }
+  .geom { min-height: 9rem; }
+  .issue-section { padding-top: 2rem; padding-bottom: 2rem; }
+  .compact-section { padding-top: 1.75rem; padding-bottom: 1.75rem; }
+  .coffee-box { padding: 1.8rem 1.25rem 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media print {
+  body { background: #fff; }
+  .skip-link { display: none; }
+}
 </style>
 </head>
 <body>
-<a href="#content" class="absolute top-0 left-0 pa3 bg-white black sans b">Skip to content</a>
-<header class="measure-wide center ph3 ph4-l pt4 pt5-l">
+<a href="#content" class="skip-link absolute top-0 left-0 pa3 bg-white black sans b z-5">Skip to content</a>
+<!-- ===== MASTHEAD ===== -->
+<header class="measure-wide center ph3 ph4-l pt3 pt4-l">
   <div class="flex justify-between items-start">
     <div class="sans f7 tracked-mega b">
       <div>UC IRVINE</div><div>DEPARTMENT OF COMPARATIVE LITERATURE</div>
@@ -33,75 +409,99 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.16em}a:ho
     </div>
     <div class="geom w-100 w-30-l mt4 mt0-l" aria-hidden="true"><span class="r1"></span><span class="b1"></span><span class="c1"></span><span class="diag"></span></div>
   </div>
-  <div class="bt bw1 b--black mt4 mt5-l"></div>
+  <div class="bt bw1 b--black mt3 mt4-l"></div>
 </header>
 
 <main id="content" class="measure-wide center ph3 ph4-l">
-  <section class="pv5 pv6-l" aria-labelledby="opening">
-    <div class="grid2">
-      <div>
-        <p class="kicker">A note for the season</p>
-        <h2 id="opening" class="display mt3">The summer behind us</h2>
-        <div class="lead mt4 measure">
-          <p>The summer behind us broke heat records in one region after another, month after month. Drought followed the heat, and catastrophic landslides swept through the Himalayas. Armed conflicts escalated, leaving a trail of death and a rampant militarism across much of the world. Nearer to us, it brought the loss of a colleague, a mentor, and a public intellectual of rare stature.</p>
-          <p>And still we read, we think, we write, we do our work. That is what follows here.</p>
-        </div>
-      </div>
-      <div class="geom dn db-l" aria-hidden="true"><span class="b1"></span><span class="c1"></span><span class="c2"></span></div>
+  <!-- ===== OPENING NOTE ===== -->
+  <section class="issue-section" aria-labelledby="opening">
+    <p class="kicker">A note for the season</p>
+    <h2 id="opening" class="display mt3">The summer behind us</h2>
+    <div class="lead mt4 substance">
+      <p>The summer behind us broke heat records in one region after another, month after month. Drought followed the heat, and catastrophic landslides swept through the Himalayas. Armed conflicts escalated, leaving a trail of death and a rampant militarism across much of the world. Nearer to us, it brought the loss of a colleague, a mentor, and a public intellectual of rare stature.</p>
+      <p>And still we read, we think, we write, we do our work. That is what follows here.</p>
     </div>
   </section>
 
-  <section class="bt bb b--black pv5 pv6-l" aria-labelledby="abbas">
-    <div class="grid2">
-      <div><p class="kicker">In memoriam</p><h2 id="abbas" class="h2 mt3">Ackbar Abbas</h2><p class="issue mt3">1942–2026</p></div>
-      <div class="body measure">
+  <!-- ===== IN MEMORIAM ===== -->
+  <section class="bt bb b--black issue-section" aria-labelledby="abbas">
+    <p class="kicker">In memoriam</p><h2 id="abbas" class="h2 mt3">Ackbar Abbas</h2><p class="issue mt3">1942–2026</p>
+      <blockquote class="body memorial-quote">
         <p>Professor Ackbar Abbas (b. 1942 in Hong Kong) died peacefully in Beijing on July 13, 2026, after a brief period of illness. He is survived by his wife, Sola Liu, his four children and three grandchildren.</p>
         <p>Ackbar joined the Department of Comparative Literature at UCI in January 2007, after teaching at the University of Hong Kong. His singular and creative work has had a major impact globally, both in the academy and as a public intellectual, and brought new ways of thinking and a new style of writing to UCI.</p>
         <p>His international recognition is reflected in his invited keynotes and public lectures, including in South Africa (WISER), Taipei, Singapore, Seoul, London, Russia, South Korea, Germany, Canada and Hong Kong. He also served on the editorial boards of major journals in Hong Kong, Turkey, the UK, Australia, and the Netherlands.</p>
         <p class="sans f7 tracked">— Written by Gabriele Schwab, on behalf of the Department of Comparative Literature</p>
         <p>A memorial for Professor Ackbar Abbas is being planned in conjunction with the Global Asias conference at UCI in winter quarter. Details will be made available at a later date.</p>
-      </div>
-    </div>
-    <div class="mt5 pt4 bt b--black"><p class="kicker">Further remembrances</p><ul class="body measure"><li class="mb3">A tribute by David Theo Goldberg, UCI School of Humanities, on Ackbar as colleague, interlocutor, and friend.</li><li>Shiqi Lin, <cite>“To Fail, to Struggle, to Live the Impossible: Remembering Ackbar Abbas”</cite>, <em>Positions Politics</em>, a former student's reflection on his thought and its afterlives.</li></ul></div>
+      </blockquote>
+    <div class="mt4 pt3 bt b--black substance"><p class="kicker">Further remembrances</p><ul class="body measure"><li class="mb3"><a href="https://www.humanities.uci.edu/news/ackbar-abbas-0">A tribute by David Theo Goldberg</a>, UCI School of Humanities, on Ackbar as colleague, interlocutor, and friend.</li><li>Shiqi Lin, <a href="https://positionspolitics.org/shiqi-lin-to-fail-to-struggle-to-live-the-impossible-remembering-ackbar-abbas/"><cite>“To Fail, to Struggle, to Live the Impossible: Remembering Ackbar Abbas”</cite></a>, <em>Positions Politics</em>, a former student's reflection on his thought and its afterlives.</li></ul></div>
   </section>
 
-  <section class="pv5 pv6-l" aria-labelledby="honors">
-    <div class="grid2 items-center"><div class="geom-small dn db-l" aria-hidden="true"><span class="sq"></span><span class="bar"></span></div><div><p class="kicker">Faculty honors</p><h2 id="honors" class="h2 mt3">Recognition and milestones</h2><div class="lead measure mt4"><p>Congratulations to Jane O. Newman, Professor Emerita of Comparative Literature, on receiving a 2026–2027 UCI Academic Senate Better World Award.</p></div><div class="body measure"><p>The award recognizes faculty whose work extends beyond the campus to serve the wider public, a fitting recognition of Newman's advocacy for scholars at risk, alongside her continuing scholarship on Erich Auerbach.</p></div></div></div>
+  <!-- ===== FACULTY HONORS ===== -->
+  <div class="shape-band mt3" aria-hidden="true">
+    <span class="red-square"></span><span class="black-bar"></span><span class="black-dot"></span>
+  </div>
+  <section class="issue-section" aria-labelledby="honors">
+    <p class="kicker">Faculty honors</p>
+    <h2 id="honors" class="h2 mt3">Recognition and milestones</h2>
+    <div class="lead substance mt4"><p>Congratulations to Jane O. Newman, Professor Emerita of Comparative Literature, on receiving a 2026–2027 UCI Academic Senate Better World Award.</p></div>
+    <div class="body substance"><p>The award recognizes faculty whose work extends beyond the campus to serve the wider public, a fitting recognition of Newman's advocacy for scholars at risk, alongside her continuing scholarship on Erich Auerbach.</p></div>
   </section>
 
-  <section class="bt b--black pv5 pv6-l" aria-labelledby="dispatches">
-    <p class="kicker">Summer research dispatches</p><h2 id="dispatches" class="h2 mt3 mb4">Three reports from the summer</h2>
-    <div class="sequence mt5">
+  <!-- ===== SUMMER RESEARCH DISPATCHES ===== -->
+  <section class="bt b--black issue-section" aria-labelledby="dispatches">
+    <p class="kicker">Summer research dispatches</p><h2 id="dispatches" class="clip">Summer research dispatches</h2>
+    <div class="sequence mt4">
       <article>
         <h3 class="h3">The coldest summer I ever spent was a winter in Buenos Aires...</h3><p class="byline mt3">Margaux Fitoussi, Assistant Professor of Comparative Literature</p>
-        <figure class="mv4"><img class="dispatch-img" src="assets/El_GauchitoB_N.jpg" alt="Grainy black-and-white Super 8 still: a woman in profile, her face lit from below by candle flame, with a bearded man in a cap beside her and a latticed window behind."><figcaption class="small f6 i mt2">Still from <em>El Gauchito</em> (2026), Margaux Fitoussi and Nicolás Viotti.</figcaption></figure>
-        <div class="body"><p>This July, I gave a talk at the University of San Martín about the history of the moving image in ethnographic fieldwork and my own visual anthropological practice.</p><p>I stayed for two months, and while there became curious about the popular saint Gauchito Gil, a tragic hero from the northeastern Argentinian province of Corrientes, who is venerated in thousands of blood-red shrines across the country—on the road, in cemeteries, in people's homes.</p><p>The Gauchito Gil story is, in part, the late nineteenth-century tale of a military deserter who, moments before his execution, told a policeman that his ill son would be cured if he prayed for him, the man he was about to execute.</p><p>The policeman prayed for Gauchito Gil, slit his throat and hung him from a tree—then, when his son had healed, built him a shrine.</p><p>In Mariana Enríquez's short story <cite>“El chico sucio”</cite> (<em>The Dirty Kid</em>), she explains: “The gaucho brings luck, heals, helps, and doesn't ask for much in return, just that these tributes be paid to him and, sometimes, [with] a little bit of alcohol.” (2016, 17, translation mine).</p><p>I have researched the lived experience of people who pray to local saints before, following Tunisians, both Muslims and Jews, on similar sorts of pilgrimages.</p><p>From Tunisia to Argentina, people journey to pray for any number of reasons, with requests that speak to injuries of class, faith in the possibility of miracles, and a willingness to ask for spiritual intervention.</p><p>Now, after leaving Buenos Aires, I am returning to Super 8 footage I shot of an August pilgrimage to a Gauchito Gil shrine on the southern outskirts of Buenos Aires: the offering of alcohol and cigarettes, the lighting of candles, individual prayers made in a crowd.</p><p>New directions that are in fact old directions in new places.</p></div>
+        <div class="media-row mt4">
+<figure class="square-image"><img class="dispatch-img" src="assets/El_GauchitoB_N.jpg" alt="Grainy black-and-white Super 8 still: a woman in profile, her face lit from below by candle flame, with a bearded man in a cap beside her and a latticed window behind."><figcaption class="small f6 i mt2">Still from <em>El Gauchito</em> (2026), Margaux Fitoussi and Nicolás Viotti.</figcaption></figure>
+<div class="media-copy body"><p>This July, I gave a talk at the University of San Martín about the history of the moving image in ethnographic fieldwork and my own visual anthropological practice.</p><p>I stayed for two months, and while there became curious about the popular saint Gauchito Gil, a tragic hero from the northeastern Argentinian province of Corrientes, who is venerated in thousands of blood-red shrines across the country—on the road, in cemeteries, in people's homes.</p><p>The Gauchito Gil story is, in part, the late nineteenth-century tale of a military deserter who, moments before his execution, told a policeman that his ill son would be cured if he prayed for him, the man he was about to execute.</p><p>The policeman prayed for Gauchito Gil, slit his throat and hung him from a tree—then, when his son had healed, built him a shrine.</p><p>In Mariana Enríquez's short story <cite>“El chico sucio”</cite> (<em>The Dirty Kid</em>), she explains: “The gaucho brings luck, heals, helps, and doesn't ask for much in return, just that these tributes be paid to him and, sometimes, [with] a little bit of alcohol.” (2016, 17, translation mine).</p><p>I have researched the lived experience of people who pray to local saints before, following Tunisians, both Muslims and Jews, on similar sorts of pilgrimages.</p><p>From Tunisia to Argentina, people journey to pray for any number of reasons, with requests that speak to injuries of class, faith in the possibility of miracles, and a willingness to ask for spiritual intervention.</p><p>Now, after leaving Buenos Aires, I am returning to Super 8 footage I shot of an August pilgrimage to a Gauchito Gil shrine on the southern outskirts of Buenos Aires: the offering of alcohol and cigarettes, the lighting of candles, individual prayers made in a crowd.</p><p>New directions that are in fact old directions in new places.</p></div>
       </article>
       <article>
         <h3 class="h3">The Two Marianos</h3><p class="byline mt3">David H. Colmenares, Assistant Professor of Comparative Literature</p>
-        <figure class="mv4"><img class="dispatch-img" src="assets/802032688_1823218945371498_4088623177359319628_n.jpg" alt="Worn paper cover printed in dark blue on tan stock, in an Art Deco style drawing on pre-Hispanic ornament: a banner reading ANTIGVA LITERATVRA INDIGENA-MEXICANA above a round vessel holding five stylized flowers, flanked by two columns with stepped lamps, over a panel reading CVLTVRA, TOMO V, NVM. 4."><figcaption class="small f6 i mt2">Luis Castillo Ledón, <em>Antigua literatura indígena mexicana</em>, Cultura V.4 (Mexico City: Editorial Cultura, 1917). Cover by Antonio Torres.</figcaption></figure>
-        <div class="body"><p>After the World Cup ended, the celebrations over Argentina's defeat finally abated, and Mexico City downgraded from soccer-crazed to its usual baseline of bustling vitality, it was time to dive into the archives I had come to explore.</p><p>I had two objectives: to learn as much as possible about the careers of two Nahua intellectuals who lived around the turn of the twentieth century, and to find the manuscripts and typescripts of their unpublished and all but forgotten translations of the <em>Cantares mexicanos</em>, the largest surviving corpus of pre-Hispanic Indigenous song in any language of the Americas.</p><p>I found what I was looking for, but the best part of the summer was finding what I had not anticipated.</p><p>Aby Warburg described a common experience of the researcher as the “law of the good neighbor”: one goes looking for a particular book or document, only to find that the unfamiliar volume beside it on the shelf is the one that matters.</p><p>In my case it was a rich paper trail documenting the everyday working lives of Mariano Jacobo Rojas and Mariano Sánchez Santos, the two Indigenous intellectuals who taught Nahuatl (or Mexicano, as it was then known) at the Museo Nacional well into the twentieth century.</p><p>The museum's archives record with glorious bureaucratic detail (the administration required monthly and even weekly reports from everyone from the head archaeologist to the janitors) the two Marianos' daily labors as teachers, textual scholars, and respected linguistic authorities; their persistence, against all odds, in transcribing and translating difficult sixteenth-century Nahuatl texts; and their efforts to keep the chair of Nahuatl afloat through major political upheavals, including the Mexican Revolution.</p><p>But the documentation also intimates their personal plights.</p><p>Some episodes are funny, and a few resonated with my own experience as a teacher: for several weeks in March of 1907, none of Sánchez Santos's students showed up to class.</p><p>Others are intriguing, like the pricey scholarly editions that disappeared at one point from Jacobo Rojas's office.</p><p>(I'm happy to report that the books were later found, as I learned from the report of a museum janitor with a flair for sleuthing.)</p><p>Others are simply sad, like the record of the last months of Sánchez Santos's life.</p><p>The documents also let me reconstruct the changing institutional framework of the museum, founded in 1825, and the social constellation of individuals and disciplines that formed the conditions for the study of pre-Hispanic Mexico in the early twentieth century.</p></div>
+        <div class="media-row mt4">
+<figure class="square-image"><img class="dispatch-img" src="assets/802032688_1823218945371498_4088623177359319628_n.jpg" alt="Worn paper cover printed in dark blue on tan stock, in an Art Deco style drawing on pre-Hispanic ornament: a banner reading ANTIGVA LITERATVRA INDIGENA-MEXICANA above a round vessel holding five stylized flowers, flanked by two columns with stepped lamps, over a panel reading CVLTVRA, TOMO V, NVM. 4."><figcaption class="small f6 i mt2">Luis Castillo Ledón, <em>Antigua literatura indígena mexicana</em>, Cultura V.4 (Mexico City: Editorial Cultura, 1917). Cover by Antonio Torres.</figcaption></figure>
+<div class="media-copy body"><p>After the World Cup ended, the celebrations over Argentina's defeat finally abated, and Mexico City downgraded from soccer-crazed to its usual baseline of bustling vitality, it was time to dive into the archives I had come to explore.</p><p>I had two objectives: to learn as much as possible about the careers of two Nahua intellectuals who lived around the turn of the twentieth century, and to find the manuscripts and typescripts of their unpublished and all but forgotten translations of the <em>Cantares mexicanos</em>, the largest surviving corpus of pre-Hispanic Indigenous song in any language of the Americas.</p><p>I found what I was looking for, but the best part of the summer was finding what I had not anticipated.</p><p>Aby Warburg described a common experience of the researcher as the “law of the good neighbor”: one goes looking for a particular book or document, only to find that the unfamiliar volume beside it on the shelf is the one that matters.</p><p>In my case it was a rich paper trail documenting the everyday working lives of Mariano Jacobo Rojas and Mariano Sánchez Santos, the two Indigenous intellectuals who taught Nahuatl (or Mexicano, as it was then known) at the Museo Nacional well into the twentieth century.</p><p>The museum's archives record with glorious bureaucratic detail (the administration required monthly and even weekly reports from everyone from the head archaeologist to the janitors) the two Marianos' daily labors as teachers, textual scholars, and respected linguistic authorities; their persistence, against all odds, in transcribing and translating difficult sixteenth-century Nahuatl texts; and their efforts to keep the chair of Nahuatl afloat through major political upheavals, including the Mexican Revolution.</p><p>But the documentation also intimates their personal plights.</p><p>Some episodes are funny, and a few resonated with my own experience as a teacher: for several weeks in March of 1907, none of Sánchez Santos's students showed up to class.</p><p>Others are intriguing, like the pricey scholarly editions that disappeared at one point from Jacobo Rojas's office.</p><p>(I'm happy to report that the books were later found, as I learned from the report of a museum janitor with a flair for sleuthing.)</p><p>Others are simply sad, like the record of the last months of Sánchez Santos's life.</p><p>The documents also let me reconstruct the changing institutional framework of the museum, founded in 1825, and the social constellation of individuals and disciplines that formed the conditions for the study of pre-Hispanic Mexico in the early twentieth century.</p></div>
       </article>
       <article>
         <h3 class="h3">Yiddish in the new old country</h3><p class="byline mt3">Iris Malke Morrell, PhD Student in Comparative Literature</p>
-        <figure class="mv4"><img class="dispatch-img" src="assets/morrell-letterpress.jpg" alt="Image from Iris Malke Morrell's summer work with Yiddish letterpress. Photo credit to be confirmed."><figcaption class="small f6 i mt2">Photo credit to be confirmed with Iris Malke Morrell.</figcaption></figure>
-        <div class="body"><p>I began June with a week in Princeton to kick off a translation fellowship, and spent the rest of the summer co-translating a Hasidic oration about kabbalistic metaphysics with a delightful cohort.</p><p>Simultaneous to translating, I studied Yiddish intensively at the YIVO Institute in New York City.</p><p>Upstairs in the same building as the intensive I visited a book arts collective, founded by new friends of mine, that is purchasing and maintaining old Yiddish letterpress.</p><p>Finally, I spent the first weeks of September conducting an archival encounter in Berkeley discovering the world of <em>Tree</em>, a journal of kabbalistic poetry run by beatnik poets who published some of the first English translations (often highly erroneous ones) of ancient Jewish mystical texts alongside antiwar discourse and contemporary mystical and erotic poetry.</p><p>See the picture below for what I made myself on the letterpress—what you can't see is the windows overlooking lower Manhattan where Yiddish-speaking factory workers used the same machines a century ago.</p></div>
+        <div class="media-row mt4">
+<figure class="square-image"><img class="dispatch-img" src="assets/morrell-letterpress.jpg" alt="Image from Iris Malke Morrell's summer work with Yiddish letterpress. Photo credit to be confirmed."><figcaption class="small f6 i mt2">Photo credit to be confirmed with Iris Malke Morrell.</figcaption></figure>
+<div class="media-copy body"><p>I began June with a week in Princeton to kick off a translation fellowship, and spent the rest of the summer co-translating a Hasidic oration about kabbalistic metaphysics with a delightful cohort.</p><p>Simultaneous to translating, I studied Yiddish intensively at the YIVO Institute in New York City.</p><p>Upstairs in the same building as the intensive I visited a book arts collective, founded by new friends of mine, that is purchasing and maintaining old Yiddish letterpress.</p><p>Finally, I spent the first weeks of September conducting an archival encounter in Berkeley discovering the world of <em>Tree</em>, a journal of kabbalistic poetry run by beatnik poets who published some of the first English translations (often highly erroneous ones) of ancient Jewish mystical texts alongside antiwar discourse and contemporary mystical and erotic poetry.</p><p>See the picture below for what I made myself on the letterpress—what you can't see is the windows overlooking lower Manhattan where Yiddish-speaking factory workers used the same machines a century ago.</p></div>
       </article>
     </div>
   </section>
 
-  <section class="pv5 pv6-l" aria-labelledby="readings"><p class="kicker">Summer readings</p><h2 id="readings" class="h2 mt3">Books for the season</h2><div class="mt5">
-    <article class="reading-item"><img class="cover" src="assets/marlatt-liquidities.jpg" alt="Cover of Daphne Marlatt's Liquidities: Vancouver Poems Then and Now."><h3 class="h3 mt4"><strong>Daphne Marlatt,</strong> <em>Liquidities: Vancouver Poems Then and Now</em></h3><p class="byline mt3">Recommended by Dylan Taylor, PhD candidate</p><blockquote class="body">Chilly, hallucinatory poems or rather “liquid assets”; view-fractures of livestream city-phenomenology, or that is, the “inchoate dark on the blank side of the news” as brittle and opaline as any lichen subsisting in the Pacific Northwest; or that is, its “permeable spasm in continuity,” or that is, “whose?”; or, that is, not exactly “summer” reading.</blockquote></article>
-    <article class="reading-item"><img class="cover" src="assets/akbar-martyr.jpg" alt="Cover of Kaveh Akbar's Martyr!."><h3 class="h3 mt4"><strong>Kaveh Akbar,</strong> <em>Martyr!</em></h3><p class="byline mt3">Recommended by Sabella Habtemariam</p><blockquote class="body">A strenuously sober poet sets out to make an anthology of martyrs: Joan of Arc, Bobby Sands, his parents, and soon himself. Follow Cyrus try to find meaning in death—and the moments before it—as he follows his roots back to the Iran that left his family behind.</blockquote></article>
+  <div class="shape-band" aria-hidden="true">
+    <span class="red-square"></span><span class="black-bar"></span>
+  </div>
+  <!-- ===== SUMMER READINGS ===== -->
+  <section class="issue-section" aria-labelledby="readings"><p class="kicker">Summer readings</p><h2 id="readings" class="h2 mt3">Books for the season</h2><div class="mt4">
+    <article class="reading-item">
+          <div class="media-row">
+            <img class="square-image" src="assets/marlatt-liquidities.jpg" alt="Cover of Daphne Marlatt's Liquidities: Vancouver Poems Then and Now.">
+            <div class="media-copy"><h3 class="h3 mt4"><strong>Daphne Marlatt,</strong> <em>Liquidities: Vancouver Poems Then and Now</em></h3><p class="byline mt3">Recommended by Dylan Taylor, PhD candidate</p><blockquote class="body">Chilly, hallucinatory poems or rather “liquid assets”; view-fractures of livestream city-phenomenology, or that is, the “inchoate dark on the blank side of the news” as brittle and opaline as any lichen subsisting in the Pacific Northwest; or that is, its “permeable spasm in continuity,” or that is, “whose?”; or, that is, not exactly “summer” reading.</blockquote>
+            </div>
+          </div>
+        </article>
+    <article class="reading-item">
+          <div class="media-row">
+            <img class="square-image" src="assets/akbar-martyr.jpg" alt="Cover of Kaveh Akbar's Martyr!.">
+            <div class="media-copy"><h3 class="h3 mt4"><strong>Kaveh Akbar,</strong> <em>Martyr!</em></h3><p class="byline mt3">Recommended by Sabella Habtemariam</p><blockquote class="body">A strenuously sober poet sets out to make an anthology of martyrs: Joan of Arc, Bobby Sands, his parents, and soon himself. Follow Cyrus try to find meaning in death—and the moments before it—as he follows his roots back to the Iran that left his family behind.</blockquote>
+            </div>
+          </div>
+        </article>
   </div></section>
 
-  <section class="bt b--black pv5 pv6-l" aria-labelledby="alumni"><p class="kicker">Alumni news</p><h2 id="alumni" class="h2 mt3">Where are they now?</h2><div class="body substance mt4"><p>Nathaniel Adan Gonzalez has begun the English M.A. program at Cal State Fullerton.</p><blockquote>“In my time at UCI, I had the privilege of meeting some very genuine and passionate people, learned to appreciate great literature through both a historical and political lens, and through theory, practiced a more abstract and critical way of thinking about the world. Having been accepted into CSUF's English MA program, I am excited to continue my studies with an interest in literature borne out of and enriched by my experience in UCI's Comp Lit program.”</blockquote><p>If you are a Comp Lit alum with news to share, write to <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p></div></section>
+  <!-- ===== ALUMNI NEWS ===== -->
+  <section class="bt b--black issue-section" aria-labelledby="alumni"><p class="kicker">Alumni news</p><h2 id="alumni" class="h2 mt3">Where are they now?</h2><div class="body substance mt4"><p>Nathaniel Adan Gonzalez has begun the English M.A. program at Cal State Fullerton.</p><blockquote>In my time at UCI, I had the privilege of meeting some very genuine and passionate people, learned to appreciate great literature through both a historical and political lens, and through theory, practiced a more abstract and critical way of thinking about the world. Having been accepted into CSUF's English MA program, I am excited to continue my studies with an interest in literature borne out of and enriched by my experience in UCI's Comp Lit program.</blockquote><p>If you are a Comp Lit alum with news to share, write to <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p></div></section>
 
-  <section class="pv5 pv6-l" aria-labelledby="grants">
+  <!-- ===== GRANTS & SCHOLARSHIPS ===== -->
+  <section class="issue-section" aria-labelledby="grants">
     <p class="kicker">Fall grants and scholarships</p>
     <h2 id="grants" class="h2 mt3">Opportunities for 2026–2027</h2>
     <div class="lead substance mt4"><p>The national scholarship cycles are open now, and several deadlines fall this quarter. If you have been meaning to look into these, this is the moment.</p></div>
-    <div class="body substance mt5">
+    <div class="body substance mt4">
       <article class="scholarship"><h3 class="h3">Critical Language Scholarship</h3><p>A fully funded 8–10 week overseas language and cultural immersion program, open to undergraduates at every level of language learning.</p><p>Students from all disciplines are encouraged to apply, and recent languages have included Arabic, Chinese, Hindi, Japanese, Korean, Persian, Portuguese, Russian, and Swahili.</p><p>This one is unusually approachable: no campus endorsement is required, and no letters of recommendation.</p><p>The deadline is in mid-November for summer 2027.</p><p>One rule worth knowing before you start: you may apply for one language only, and submitting more than one application disqualifies you from all of them.</p></article>
       <article class="scholarship"><h3 class="h3">Fulbright U.S. Student Program</h3><p>The national deadline for the current cycle is October 6, 2026.</p><p>If you are a senior applying through UCI's endorsement process, the campus deadline has already passed.</p><p>If you are a junior, this is the year to begin: strong applications take months to develop, and the campus deadline runs well ahead of the national one.</p></article>
       <article class="scholarship"><h3 class="h3">UROP</h3><p>For UCI-internal funding, the department is glad to support students applying for Undergraduate Research Opportunities Program grants. Deadlines fall later in the year, but students typically develop a project with a faculty mentor over the preceding quarter.</p><p><a href="https://urop.uci.edu/">urop.uci.edu</a></p></article>
@@ -109,28 +509,33 @@ a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.16em}a:ho
     </div>
   </section>
 
-  <section class="bt bb b--black pv5 pv6-l" aria-labelledby="coffee">
+  <!-- ===== COFFEE HOUR CALLOUT ===== -->
+  <section class="bt bb b--black issue-section" aria-labelledby="coffee">
     <div class="coffee-box">
-      <p class="kicker">Department gathering</p>
+      <p class="kicker">Coffee hour</p>
       <h2 id="coffee" class="h2 mt3">All are welcome</h2>
       <div class="body substance mt4"><p>Comparative Literature and English &amp; Comparative Literary Studies are holding a joint coffee hour on Wednesday, September 30, from [time], in the Comparative Literature lobby.</p><p>Faculty, graduate students, lecturers, and undergraduates are all welcome.</p><p>Coffee and something to eat will be out through the end of the day, so come by after class if the hour itself doesn't work.</p></div>
     </div>
   </section>
 
-  <section class="pv5 pv6-l" aria-labelledby="library">
+  <div class="shape-band" aria-hidden="true">
+    <span class="black-dot"></span><span class="red-square"></span>
+  </div>
+  <!-- ===== MINI FREE LIBRARY ===== -->
+  <section class="issue-section" aria-labelledby="library">
     <p class="kicker">New: a mini free library in the lobby</p>
     <h2 id="library" class="h2 mt3">Take a book. Leave a book.</h2>
     <div class="lead substance mt4"><p>There is now a mini free library in the Comparative Literature lobby. The books are free, and they are there to be taken: undergraduates and graduate students alike, help yourselves, no sign-out and no return date.</p><p>If you have books you no longer need, leave them on the shelf for someone else.</p></div>
   </section>
 
-  <section class="bt b--black pv5 pv6-l" aria-labelledby="colophon">
-    <span class="pilcrow" aria-hidden="true">¶</span>
-    <p class="kicker">Colophon</p>
-    <h2 id="colophon" class="h2 mt3">Of Two Squares</h2>
+  <!-- ===== COLOPHON ===== -->
+  <section class="bt b--black issue-section" aria-labelledby="colophon">
+    <div class="colophon-heading"><span class="pilcrow" aria-hidden="true">¶</span><h2 id="colophon" class="h2 ma0">Of Two Squares</h2></div>
     <div class="body substance mt4"><p>The design of this issue is inspired by El Lissitzky's <em>Of Two Squares: A Suprematist Tale in Six Constructions</em> (Berlin, 1922).</p><p>In it a red square and a black square travel through space to a world of dark disorder, clash, and leave behind a new construction assembled from the wreckage. The story is narrated almost exclusively through geometry.</p><p>Lissitzky's book is on the syllabus of <strong>Philosophical Fictions</strong>, the new Comp Lit 60A, offered for the first time in Spring 2027.</p></div>
   </section>
 </main>
 
-<footer class="measure-wide center ph3 ph4-l pv5"><div class="bt b--black pt4 grid2"><div><div class="footer-mark">UC Irvine</div><p class="sans f7 tracked-mega">Department of Comparative Literature</p></div><div class="small measure"><p><em>The Comparatist</em> is published quarterly by the Department of Comparative Literature at the University of California, Irvine.</p><p>Edited by David H. Colmenares, Director of Undergraduate Studies.</p><p>News and contributions are welcome at <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p></div></div></footer>
+<!-- ===== PUBLICATION FOOTER ===== -->
+<footer class="measure-wide center ph3 ph4-l pv4"><div class="bt b--black pt4"><div class="footer-mark">UC Irvine</div><p class="sans f7 tracked-mega">Department of Comparative Literature</p><div class="small substance mt4"><p><em>The Comparatist</em> is published quarterly by the Department of Comparative Literature at the University of California, Irvine.</p><p>Edited by David H. Colmenares, Director of Undergraduate Studies.</p><p>News and contributions are welcome at <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p></div></div></footer>
 </body>
 </html>
