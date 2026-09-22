@@ -1,3 +1,4 @@
+```
 <!DOCTYPE html>
 
 <html lang="en-US">
@@ -24,6 +25,7 @@
    .h2/.h3 : large sans-serif headings
    .body   : serif reading text
    .bg-*   : decorative background geometry only
+   .reading-item : book review; kicker + blowout quote + small floated cover + epigraph credit
    ================================================================ */
 :root{--paper:#f5f1e8;--ink:#111;--red:#d71920;--rule:#555}
 html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Garamond,"Adobe Garamond Pro","EB Garamond",Georgia,"Times New Roman",serif;line-height:1.62}
@@ -142,7 +144,11 @@ section{position:relative}
    Note: Garamond must be installed/served on the viewing device; CSS cannot bundle the font by itself. */
 .body,.lead,blockquote,.serif,.memorial-box,.news-feature .feature-copy{font-family:Garamond,"Adobe Garamond Pro","EB Garamond",Georgia,"Times New Roman",serif !important;}
 
-/* Readings: text first, cover on the right. */
+/* BOOK REVIEW STYLE
+   Reviews are typographic blowouts rather than cards.
+   Hierarchy: reviewer as .kicker; review in large serif type; small cover floated right;
+   bibliographic credit right-aligned below like an epigraph. Tachyons controls the
+   quote scale/leading (currently f3 f1-l lh-solid) and the floated cover dimensions. */
 .reading-item{max-width:none}
 .cover{width:100%;max-width:13rem;height:auto;aspect-ratio:auto;object-fit:contain}
 
@@ -244,70 +250,36 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 </div>
 </div>
 </section>
-<!-- Summer readings. Tachyons Basic Text Cards: book title in the card header, review and cover in the card body. -->
+<!-- ==================== BOOK REVIEWS ====================
+     Blowout review text is the dominant element; reviewer appears as a kicker,
+     a small cover floats at right, and the book credit closes like an epigraph. -->
 <section aria-labelledby="readings" class="pv5 pv6-l">
 <p class="kicker f4 mb2">Book Reviews</p>
 <h2 class="h2 f2 section-title mb3" id="readings">Summer readings</h2>
 <div class="mt5">
 
-<article class="reading-item mb5">
-  <h3 class="article-title f3 lh-title bg-near-black white mv0 pa3 sans mb1"><strong>Daphne Marlatt,</strong> <em>Liquidities: Vancouver Poems Then and Now</em></h3>
-  <div class="ba b--black-20 bt-0 bg-light-gray flex flex-column flex-row-l">
-    <div class="w-100 w-70-l pa3 pa4-l">
-      <p class="byline f5 mb3">Recommended by Dylan Taylor, PhD candidate</p>
-      <p class="review-quote f3 lh-copy serif i mv0"><strong>“</strong>Chilly, hallucinatory poems or rather “liquid assets”; view-fractures of livestream city-phenomenology, or that is, the “inchoate dark on the blank side of the news” as brittle and opaline as any lichen subsisting in the Pacific Northwest; or that is, its “permeable spasm in continuity,” or that is, “whose?”; or, that is, not exactly “summer” reading.<strong>”</strong></p>
-    </div>
-    <div class="w-100 w-30-l pa3 pa4-l pt0 pt4-l flex items-start justify-center">
-      <img alt="Cover of Daphne Marlatt's Liquidities: Vancouver Poems Then and Now." class="cover" src="assets/marlatt-liquidities.jpg"/>
-    </div>
-  </div>
-</article>
-
-   <article class="reading-item mb5 cf">
-
-  <p class="kicker mb3">
-    Recommended by Dylan Taylor, PhD Candidate
-  </p>
-
+<article class="reading-item mb5 cf">
+  <p class="kicker mb3">Recommended by Dylan Taylor, PhD Candidate</p>
   <figure class="fr w4 w5-l ml4 mb3 mt1">
-    <img
-      src="assets/marlatt-liquidities.jpg"
-      alt="Cover of Daphne Marlatt's Liquidities: Vancouver Poems Then and Now."
-      class="cover"
-    >
+    <img src="assets/marlatt-liquidities.jpg" alt="Cover of Daphne Marlatt's Liquidities: Vancouver Poems Then and Now." class="cover">
   </figure>
-
   <blockquote class="review-quote mv0">
-    <p class="f3 f1-l lh-solid serif mv0">
-      Chilly, hallucinatory poems or rather ‘liquid assets’;
-      view-fractures of livestream city-phenomenology, or that is,
-      the ‘inchoate dark on the blank side of the news’ as brittle
-      and opaline as any lichen subsisting in the Pacific Northwest;
-      or that is, its ‘permeable spasm in continuity,’ or that is,
-      ‘whose?’; or, that is, not exactly ‘summer’ reading.
-    </p>
+    <p class="f3 f1-l lh-solid serif mv0">Chilly, hallucinatory poems or rather ‘liquid assets’; view-fractures of livestream city-phenomenology, or that is, the ‘inchoate dark on the blank side of the news’ as brittle and opaline as any lichen subsisting in the Pacific Northwest; or that is, its ‘permeable spasm in continuity,’ or that is, ‘whose?’; or, that is, not exactly ‘summer’ reading.</p>
   </blockquote>
-
   <div class="cf"></div>
-
-  <p class="tr f5 mt4 mb0">
-    Daphne Marlatt,
-    <cite>Liquidities: Vancouver Poems Then and Now</cite>
-  </p>
-
+  <p class="tr f5 mt4 mb0">Daphne Marlatt, <cite>Liquidities: Vancouver Poems Then and Now</cite></p>
 </article>
 
-<article class="reading-item mb5">
-  <h3 class="article-title f3 lh-title bg-near-black white mv0 pa3 sans mb1"><strong>Kaveh Akbar,</strong> <em>Martyr!</em></h3>
-  <div class="ba b--black-20 bt-0 bg-light-gray flex flex-column flex-row-l">
-    <div class="w-100 w-70-l pa3 pa4-l">
-      <p class="byline f5 mb3">Recommended by Sabella Habtemariam</p>
-      <p class="review-quote f3 lh-copy serif i mv0"><strong>“</strong>A strenuously sober poet sets out to make an anthology of martyrs: Joan of Arc, Bobby Sands, his parents, and soon himself. Follow Cyrus try to find meaning in death—and the moments before it—as he follows his roots back to the Iran that left his family behind.<strong>”</strong></p>
-    </div>
-    <div class="w-100 w-30-l pa3 pa4-l pt0 pt4-l flex items-start justify-center">
-      <img alt="Cover of Kaveh Akbar's Martyr!." class="cover" src="assets/akbar-martyr.jpg"/>
-    </div>
-  </div>
+<article class="reading-item mb5 cf">
+  <p class="kicker mb3">Recommended by Sabella Habtemariam</p>
+  <figure class="fr w4 w5-l ml4 mb3 mt1">
+    <img src="assets/akbar-martyr.jpg" alt="Cover of Kaveh Akbar's Martyr!." class="cover">
+  </figure>
+  <blockquote class="review-quote mv0">
+    <p class="f3 f1-l lh-solid serif mv0">A strenuously sober poet sets out to make an anthology of martyrs: Joan of Arc, Bobby Sands, his parents, and soon himself. Follow Cyrus try to find meaning in death—and the moments before it—as he follows his roots back to the Iran that left his family behind.</p>
+  </blockquote>
+  <div class="cf"></div>
+  <p class="tr f5 mt4 mb0">Kaveh Akbar, <cite>Martyr!</cite></p>
 </article>
 
 </div>
@@ -349,3 +321,5 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 <footer class="measure-wide center ph3 ph4-l pv5"><div class="bt b--black pt4"><div class="flex flex-column flex-row-l"><div class="w-100 w-50-l ph3-l"><div class="footer-mark">UC Irvine</div><p class="sans f5 tracked-mega"><a href="https://www.humanities.uci.edu/complit">Department of Comparative Literature</a></p></div><div class="serif f5 measure w-100 w-50-l ph3-l"><p><em>The Comparatist</em> is published quarterly by the Department of Comparative Literature at the University of California, Irvine. Edited by David H. Colmenares, Director of Undergraduate Studies. News and contributions are welcome at <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p><div class="footer-colophon mt4"><p><span aria-hidden="true" class="pilcrow-inline">¶</span>The design of this issue is inspired by El Lissitzky's <em class="colophon-book-title">Of Two Squares: A Suprematist Tale in Six Constructions</em> (Berlin, 1922). In the book, a red square and a black square travel through space and collide with a world of dark disorder, leaving behind the foundations of new construction assembled from the wreckage. The story is narrated primarily through geometrical shapes. Lissitzky's book appears on the syllabus of <span class="colophon-course">Philosophical Fictions</span>, the new Comp Lit 60A, to be offered for the first time in Spring 2027.</p></div></div></div></div></footer>
 </body>
 </html>
+
+```
