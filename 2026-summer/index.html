@@ -15,6 +15,9 @@
    Issue-specific stylesheet. Tachyons handles spacing, widths, and
    responsive flex layouts; the rules below provide the Lissitzky-
    inspired typography, geometry, and special editorial treatments.
+   Ordinary editorial sections use Tachyons ph2 ph3-l for a slightly
+   narrower reading field; major-news and book-review color fields stay
+   full measure so they break outward as deliberate interruptions.
 
    QUICK EDITING GUIDE
    --paper : page background
@@ -145,12 +148,10 @@ section{position:relative}
 .body,.lead,blockquote,.serif,.memorial-box,.news-feature .feature-copy{font-family:Garamond,"Adobe Garamond Pro","EB Garamond",Georgia,"Times New Roman",serif !important;}
 
 /* BOOK REVIEW STYLE
-   Reviews are typographic blowouts rather than cards.
-   Hierarchy: reviewer as .kicker; review in large serif type; small cover floated right;
-   bibliographic credit right-aligned below like an epigraph. Tachyons controls the
-   quote scale/leading (currently f3 f1-l lh-solid) and the floated cover dimensions. */
-.reading-item{max-width:none}
-.cover{width:100%;max-width:13rem;height:auto;aspect-ratio:auto;object-fit:contain}
+   Reviews are full-width pale-red typographic fields built with Tachyons utilities only.
+   Hierarchy: centered reviewer credit; centered large serif review; centered author and
+   italic book title below. Book covers are omitted. When a verified Bookshop.org product
+   page is available, the title itself is the link. */
 
 /* Opportunities: simple nested list. */
 .opportunity-list{max-width:52rem}
@@ -196,7 +197,7 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 <!-- ==================== NEWSLETTER CONTENT ==================== -->
 <main class="measure-wide center ph3 ph4-l" id="content">
 <!-- Opening note -->
-<section aria-labelledby="opening" class="pv5 pv6-l">
+<section aria-labelledby="opening" class="ph2 ph3-l pv5 pv6-l">
 <div class="flex flex-column flex-row-l">
 <div class="w-100 w-50-l ph3-l">
 <p class="kicker f4 mb2">A note for the season</p>
@@ -209,7 +210,7 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 </div>
 </section>
 <!-- In memoriam: Ackbar Abbas. The main memorial text is intentionally a quotation. -->
-<section aria-labelledby="abbas" class="bt bb b--black pv5 pv6-l">
+<section aria-labelledby="abbas" class="ph2 ph3-l bt bb b--black pv5 pv6-l">
 <div class="flex flex-column flex-row-l">
 <div class="w-100 w-50-l ph3-l"><p class="kicker f4 mb2">In memoriam</p><h2 class="h2 f2 section-title mb3" id="abbas">Ackbar Abbas</h2><p class="issue f5 mt3">1942–2026</p></div>
 <div class="body measure w-100 w-50-l ph3-l f5">
@@ -219,12 +220,12 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 <div class="mt5 pt4 bt b--black"><p class="kicker f4 mb2">Further remembrances</p><ul class="body measure f5"><li class="mb3"><a href="https://www.humanities.uci.edu/news/ackbar-abbas-0">A tribute by David Theo Goldberg, UCI School of Humanities, on Ackbar as colleague, interlocutor, and friend.</a></li><li>Shiqi Lin, <a href="https://positionspolitics.org/shiqi-lin-to-fail-to-struggle-to-live-the-impossible-remembering-ackbar-abbas/"><cite>“To Fail, to Struggle, to Live the Impossible: Remembering Ackbar Abbas”</cite></a>, <em>Positions Politics</em>, a former student's reflection on his thought and its afterlives.</li></ul></div>
 </section>
 <!-- Faculty honors: no display headline here; the kicker is the section heading. -->
-<section aria-labelledby="faculty-honors" class="pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:-12deg;--x:3%;--y:8%;--size:5rem;"></span><span class="bg-circle" style="--x:72%;--y:15%;--size:4rem;"></span></div>
+<section aria-labelledby="faculty-honors" class="ph2 ph3-l pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:-12deg;--x:3%;--y:8%;--size:5rem;"></span><span class="bg-circle" style="--x:72%;--y:15%;--size:4rem;"></span></div>
 <div class="flex flex-column flex-row-l content-layer"><div aria-hidden="true" class="geom-small dn db-l w-100 w-50-l ph3-l"><span class="sq"></span><span class="bar"></span></div><div class="w-100 w-50-l ph3-l"><p class="kicker f4 mb2">Faculty honors</p>
 <h2 class="h2 f2 section-title mb3" id="faculty-honors">Jane O. Newman</h2><div class="lead measure mt0 f5"><p>Congratulations to Jane O. Newman, Professor Emerita of Comparative Literature, on receiving a 2026–2027 UCI Academic Senate Better World Award!</p></div><div class="body measure f5"><p>The award recognizes faculty whose work extends beyond the campus to serve the wider public, a fitting recognition of Newman's advocacy for scholars at risk, alongside her continuing scholarship on Erich Auerbach.</p><p class="sans f5 b mt3"><a href="https://www.humanities.uci.edu/news/uci-comparative-literature-professor-emerita-jane-o-newman-awarded-2026-2027-academic-senate">Read the full story…</a></p></div></div></div>
 </section>
 <!-- Summer research dispatches. Each article is sequential; within each article, Tachyons gives text 2/3 and image 1/3 on large screens. -->
-<section aria-labelledby="dispatches" class="bt b--black pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:17deg;--x:20%;--y:21%;--size:7rem;"></span><span class="bg-circle" style="--x:61%;--y:34%;--size:6rem;"></span></div>
+<section aria-labelledby="dispatches" class="ph2 ph3-l bt b--black pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:17deg;--x:20%;--y:21%;--size:7rem;"></span><span class="bg-circle" style="--x:61%;--y:34%;--size:6rem;"></span></div>
 <p class="kicker f4 content-layer mb2" id="dispatches">Summer research dispatches</p>
 <div class="sequence content-layer">
 <article class="pb5 mb5">
@@ -251,79 +252,55 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 </div>
 </section>
 <!-- ==================== BOOK REVIEWS ====================
-     Blowout review text is the dominant element; reviewer appears as a kicker,
-     a small cover floats at right, and the book credit closes like an epigraph. -->
+     Full-width pale-red review fields using Tachyons utilities only.
+     Reviewer credit sits above a centered review; enlarged author/title attribution sits below.
+     Book titles link to the publisher or bookseller. Dylan Taylor's review closes the sequence. -->
 <section aria-labelledby="readings" class="pv5 pv6-l">
 <p class="kicker f4 mb2">Book Reviews</p>
 <h2 class="h2 f2 section-title mb3" id="readings">Summer readings</h2>
 <div class="mt5">
 
-<article class="reading-item mb5 cf">
-  <p class="kicker mb3">Recommended by Dylan Taylor, PhD Candidate</p>
-  <figure class="fr w4 w5-l ml4 mb3 mt1">
-    <img src="assets/marlatt-liquidities.jpg" alt="Cover of Daphne Marlatt's Liquidities: Vancouver Poems Then and Now." class="cover">
-  </figure>
-  <blockquote class="review-quote mv0">
-    <p class="f3 f2-l lh-solid serif mv0">Chilly, hallucinatory poems or rather ‘liquid assets’; view-fractures of livestream city-phenomenology, or that is, the ‘inchoate dark on the blank side of the news’ as brittle and opaline as any lichen subsisting in the Pacific Northwest; or that is, its ‘permeable spasm in continuity,’ or that is, ‘whose?’; or, that is, not exactly ‘summer’ reading.</p>
-  </blockquote>
-  <div class="cf"></div>
-  <p class="tr f5 mt4 mb0">Daphne Marlatt, <cite>Liquidities: Vancouver Poems Then and Now</cite></p>
-</article>
-
-<article class="reading-item mb5 cf">
-  <p class="kicker mb3">Recommended by Sabella Habtemariam</p>
-  <figure class="fr w4 w5-l ml4 mb3 mt1">
-    <img src="assets/akbar-martyr.jpg" alt="Cover of Kaveh Akbar's Martyr!." class="cover">
-  </figure>
-  <blockquote class="review-quote mv0">
-    <p class="f3 f2-l lh-solid serif mv0">A strenuously sober poet sets out to make an anthology of martyrs: Joan of Arc, Bobby Sands, his parents, and soon himself. Follow Cyrus try to find meaning in death—and the moments before it—as he follows his roots back to the Iran that left his family behind.</p>
-  </blockquote>
-  <div class="cf"></div>
-  <p class="tr f5 mt4 mb0">Kaveh Akbar, <cite>Martyr!</cite></p>
-</article>
-
-   <article class="reading-item mb5 cf">
-
-  <p class="kicker mb3">
-    Review by Michaela Cupsa
+<article class="bg-washed-red pv5 pv6-l ph3 ph5-l mb4">
+  <p class="sans f5 tracked ttu tc mb4">Review by Sabella Habtemariam</p>
+  <div class="center mw8 tc">
+    <p class="serif fs-normal f3 f2-l lh-title ma0">A strenuously sober poet sets out to make an anthology of martyrs: Joan of Arc, Bobby Sands, his parents, and soon himself. Follow Cyrus try to find meaning in death—and the moments before it—as he follows his roots back to the Iran that left his family behind.</p>
+  </div>
+  <p class="serif f4 f3-l lh-title tc mt4 mb0">
+    Kaveh Akbar<br>
+    <cite><a href="https://bookshop.org/p/books/martyr-a-novel-kaveh-akbar/69276aba766162ab?ean=9780593537626">Martyr!</a></cite>
   </p>
-
-  <figure class="fr w4 w5-l ml4 mb3 mt1">
-    <img
-      src="assets/winter.jpg"
-      alt="Cover of Christelle Dabos's A Winter's Promise."
-      class="cover"
-    >
-  </figure>
-
-  <blockquote class="review-quote mv0">
-    <p class="f3 f2-l lh-solid serif mv0">
-      A cataclysm that shattered the world into floating islands;
-      ancestral spirits that bestow unique magical powers through
-      their bloodlines; and, in the center of it all, an archivist
-      thrown into a diplomatic marriage, who has to survive a
-      political landmine of secrets—all without losing her life
-      in the process.
-    </p>
-  </blockquote>
-
-  <div class="cf"></div>
-
-  <p class="tr f5 mt4 mb0">
-    Christelle Dabos,
-    <cite>A Winter's Promise</cite>
-  </p>
-
 </article>
-   
+
+<article class="bg-washed-red pv5 pv6-l ph3 ph5-l mb4">
+  <p class="sans f5 tracked ttu tc mb4">Review by Michaela Cupsa</p>
+  <div class="center mw8 tc">
+    <p class="serif fs-normal f3 f2-l lh-title ma0">A cataclysm that shattered the world into floating islands; ancestral spirits that bestow unique magical powers through their bloodlines; and, in the center of it all, an archivist thrown into a diplomatic marriage, who has to survive a political landmine of secrets—all without losing her life in the process.</p>
+  </div>
+  <p class="serif f4 f3-l lh-title tc mt4 mb0">
+    Christelle Dabos<br>
+    <cite><a href="https://bookshop.org/p/books/a-winter-s-promise-book-one-of-the-mirror-visitor-quartet-christelle-dabos/1f309c808fc53845?ean=9781609456078">A Winter's Promise</a></cite>
+  </p>
+</article>
+
+<article class="bg-washed-red pv5 pv6-l ph3 ph5-l mb4">
+  <p class="sans f5 tracked ttu tc mb4">Review by Dylan Taylor, PhD Candidate</p>
+  <div class="center mw8 tc">
+    <p class="serif fs-normal f3 f2-l lh-title ma0">Chilly, hallucinatory poems or rather ‘liquid assets’; view-fractures of livestream city-phenomenology, or that is, the ‘inchoate dark on the blank side of the news’ as brittle and opaline as any lichen subsisting in the Pacific Northwest; or that is, its ‘permeable spasm in continuity,’ or that is, ‘whose?’; or, that is, not exactly ‘summer’ reading.</p>
+  </div>
+  <p class="serif f4 f3-l lh-title tc mt4 mb0">
+    Daphne Marlatt<br>
+    <cite><a href="https://talonbooks.com/books/liquidities">Liquidities: Vancouver Poems Then and Now</a></cite>
+  </p>
+</article>
+
 </div>
 </section>
 <!-- Alumni news -->
-<section aria-labelledby="alumni" class="bt b--black pv5 pv6-l">
+<section aria-labelledby="alumni" class="ph2 ph3-l bt b--black pv5 pv6-l">
   <p class="kicker f4 mb2" id="alumni">Alumni news</p>
   <div class="body substance f5"><p>Nathaniel Adan Gonzalez has begun the English M.A. program at Cal State Fullerton.</p><blockquote class="body f5 mv4">“In my time at UCI, I had the privilege of meeting some very genuine and passionate people, learned to appreciate great literature through both a historical and political lens, and through theory, practiced a more abstract and critical way of thinking about the world. Having been accepted into CSUF's English MA program, I am excited to continue my studies with an interest in literature borne out of and enriched by my experience in UCI's Comp Lit program.”</blockquote><p>If you are a Comp Lit alum with news to share, write to <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p></div></section>
 <!-- Opportunities: deliberately a simple nested list rather than cards/columns. -->
-<section aria-labelledby="grants" class="pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:-24deg;--x:54%;--y:47%;--size:5rem;"></span><span class="bg-circle" style="--x:39%;--y:72%;--size:6rem;"></span></div>
+<section aria-labelledby="grants" class="ph2 ph3-l pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:-24deg;--x:54%;--y:47%;--size:5rem;"></span><span class="bg-circle" style="--x:39%;--y:72%;--size:6rem;"></span></div>
 <p class="kicker f4 content-layer mb2">Fall grants and scholarships</p>
 <h2 class="h2 f2 content-layer section-title mb3" id="grants">2026–2027</h2>
 <div class="lead substance content-layer f5"><p>Two national cycles are in motion this quarter, and the campus deadlines that feed them run months ahead of the national ones.</p></div>
@@ -335,7 +312,7 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 </div>
 </section>
 <!-- Coffee hour: special boxed announcement. -->
-<section aria-labelledby="coffee" class="bt bb b--black pv5 pv6-l">
+<section aria-labelledby="coffee" class="ph2 ph3-l bt bb b--black pv5 pv6-l">
 <div class="coffee-box pa4">
 <p class="kicker f4 mb2">Spring Quarter</p>
 <h2 class="h2 f2 section-title mb3" id="coffee">Sept 30, 1–3 pm</h2>
@@ -343,7 +320,7 @@ main,header,footer,section,article,div,p,blockquote{min-width:0}
 </div>
 </section>
 <!-- Mini free library -->
-<section aria-labelledby="library" class="pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:8deg;--x:71%;--y:60%;--size:7rem;"></span><span class="bg-circle" style="--x:28%;--y:31%;--size:4rem;"></span></div>
+<section aria-labelledby="library" class="ph2 ph3-l pv5 pv6-l decorated-section"><div aria-hidden="true" class="bg-geometry"><span class="bg-square" style="--rot:8deg;--x:71%;--y:60%;--size:7rem;"></span><span class="bg-circle" style="--x:28%;--y:31%;--size:4rem;"></span></div>
 <p class="kicker f4 content-layer mb2">New: a mini free library in the lobby</p>
 <div class="lead substance content-layer f5"><p>There is now a mini free library in the Comparative Literature lobby. The books are free, and they are there to be taken: undergraduates and graduate students alike, help yourselves, no sign-out and no return date.</p><p>If you have books you no longer need, leave them on the shelf for someone else.</p></div>
 </section>
