@@ -102,7 +102,7 @@ main{
   padding:clamp(2.5rem,6vw,4.5rem) clamp(1.25rem,5vw,4rem) 5rem;
 }
 
-.intro{max-width:42rem;margin:0 0 3rem;}
+.intro{max-width:42rem;margin:0 0 1.5rem;}
 
 h2{
   margin:0 0 1.6rem;
@@ -139,6 +139,30 @@ h2::before{
 a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.16em;}
 a:hover{color:var(--red);}
 a:focus-visible{outline:3px solid var(--red);outline-offset:3px;}
+
+.subscribe{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.8rem 1.4rem;
+  margin:0 0 3.5rem;
+  max-width:42rem;
+}
+.subscribe p{margin:0;font-size:.95rem;color:var(--grey);}
+.button{
+  display:inline-block;
+  padding:.7rem 1.5rem;
+  background:var(--ink);
+  color:var(--paper);
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border:3px solid var(--ink);
+}
+.button:hover{background:var(--red);border-color:var(--red);color:var(--paper);}
+.button:focus-visible{outline:3px solid var(--red);outline-offset:3px;}
 
 .colophon{
   border-top:3px solid var(--ink);
@@ -186,6 +210,11 @@ a:focus-visible{outline:3px solid var(--red);outline-offset:3px;}
 
 <main>
   <p class="intro">The Comparatist is the undergraduate newsletter of the Department of Comparative Literature at UC Irvine, published at the end of each quarter. News, dispatches, and reading recommendations are welcome at <a href="mailto:dhcolmen@uci.edu">dhcolmen@uci.edu</a>.</p>
+
+  <div class="subscribe">
+    <a class="button" href="https://uci.us2.list-manage.com/subscribe?u=0554fee37a9c3ce15f2ef9dcb&amp;id=d1cd3bee00">Subscribe</a>
+    <p>Receive each quarterly issue by email.</p>
+  </div>
 
   <h2>Issues</h2>
 
